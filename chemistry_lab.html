@@ -62,17 +62,40 @@
       max-width:900px; margin: 8px auto; border-radius:16px;
       background: rgba(20, 100, 200, 0.12); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(150, 200, 255, 0.2); box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-      height: 0; overflow: hidden; transition: height 0.45s cubic-bezier(.23,1,.32,1), padding .3s;
+      height: 0; overflow: hidden; display: flex; flex-direction: column;
+      transition: height 0.45s cubic-bezier(.23,1,.32,1), padding .3s;
     }
-    .top-menu.expanded { height: 30vh; padding: 14px; overflow-y:auto; }
-    .top-menu::-webkit-scrollbar { width: 8px; height: 8px; }
-    .top-menu::-webkit-scrollbar-track { background: transparent; }
-    .top-menu::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 4px; }
+    .top-menu.expanded { height: 35vh; padding: 14px; }
+    
+    .sort-controls {
+      display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 12px; padding-right: 8px; flex-shrink: 0;
+    }
+
+    .sort-select, .search-input {
+      background: rgba(20, 80, 160, 0.4); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      color: white; border: 1px solid rgba(150, 200, 255, 0.4);
+      padding: 6px 12px; border-radius: 8px; outline: none;
+      font-weight: 600; font-size: 0.9rem; transition: background 0.2s, border-color 0.2s;
+    }
+    .sort-select { cursor: pointer; }
+    .search-input { width: 150px; }
+    .search-input::placeholder { color: rgba(255,255,255,0.6); font-weight: 400; }
+    .sort-select:hover, .search-input:hover, .search-input:focus { background: rgba(30, 100, 180, 0.6); border-color: rgba(150, 200, 255, 0.7); }
+    .sort-select option { background: #1a252f; color: white; }
+
+    .reagents-wrapper {
+      flex: 1; overflow-y: auto; overflow-x: hidden; padding-right: 4px;
+    }
+    .reagents-wrapper::-webkit-scrollbar { width: 8px; height: 8px; }
+    .reagents-wrapper::-webkit-scrollbar-track { background: transparent; }
+    .reagents-wrapper::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 4px; }
 
     .reagents-container {
-      display:grid; grid-template-columns: repeat(auto-fill,minmax(120px,1fr));
-      gap: 14px; padding: 6px; perspective: 800px;
-    }
+		display:grid; grid-template-columns: repeat(auto-fill,minmax(120px,1fr));
+		gap: 14px; padding: 6px; 
+	}
+	
 
     .reagent {
       background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
@@ -80,6 +103,25 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(255, 255, 255, 0.3);
       transition: box-shadow .2s, opacity .25s, filter .25s; user-select:none;
       display:flex; flex-direction:column; align-items:center; gap:6px; transform-style: preserve-3d;
+	  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out, background 0.2s;
+      transform-style: preserve-3d;
+      will-change: transform; 
+    }
+    
+    /* Add a subtle shine effect container inside the card via CSS */
+    .reagent::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.2) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      border-radius: 14px;
+    }
+
+    .reagent:hover::before {
+      opacity: 1;
     }
     
     .reagent.disabled { opacity: .35; filter: grayscale(1) blur(1px); cursor: not-allowed; transform: none !important; pointer-events: auto; }
@@ -88,7 +130,7 @@
     
     .reagent-formula { font-weight:800; font-size:1.15rem; color:#fff; text-shadow: 0 2px 5px rgba(0,0,0,0.5); transform: translateZ(20px); }
     .reagent-name { font-size:.95rem; color:#eaf2f8; text-shadow: 0 1px 3px rgba(0,0,0,0.5); transform: translateZ(10px); }
-    .reagent-type { font-size:.82rem; color:#85c1e9; text-transform:capitalize; transform: translateZ(5px); }
+    .reagent-type { font-size:.82rem; color:#b684e8; text-transform:capitalize; transform: translateZ(5px); }
 
     @keyframes pulse {
       0% { box-shadow: 0 0 0 0 rgba(46,204,113,0.4); }
@@ -104,16 +146,26 @@
     .center-zones { display:flex; align-items:center; gap:12px; flex:1; justify-content:center; min-height: 120px; }
     
     .drop-zone {
-      width: 220px; height: 120px; border-radius:20px;
+      width: 220px; height: 120px; border-radius:20px; cursor: pointer;
       background: rgba(30, 90, 180, 0.25); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border: 2px dashed rgba(100, 180, 255, 0.6); display:flex; align-items:center; justify-content:center;
       transition: all .25s ease; position:relative; overflow:hidden; box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+    }
+    .drop-zone:hover:not(.disabled-zone):not(.drag-over) {
+      background: rgba(30, 90, 180, 0.35); border-color: rgba(100, 180, 255, 0.9); transform: scale(1.02);
     }
     .drop-zone.drag-over { 
       transform: scale(1.04) translateZ(10px); border-color: #2ecc71; 
       background: rgba(46, 204, 113, 0.15); box-shadow: 0 0 0 8px rgba(46,204,113,0.2); 
     }
-    .drop-zone .dots { font-size:1.8rem; color:#fff; opacity:0.6; animation: bounce 1.2s infinite; }
+    
+    /* Disabled state for inactive slots */
+    .drop-zone.disabled-zone {
+      opacity: 0.4 !important; pointer-events: none !important; filter: grayscale(1);
+      border-color: rgba(150, 150, 150, 0.4) !important; background: rgba(0, 0, 0, 0.1) !important; box-shadow: none !important;
+    }
+
+    .drop-zone .dots { font-size:1.8rem; color:#fff; opacity:0.6; animation: bounce 1.2s infinite; pointer-events:none; }
     
     .drop-zone .reactant { 
       font-size:2rem; font-weight:700; color:#fff; text-shadow: 0 2px 8px rgba(0,0,0,0.6);
@@ -124,7 +176,7 @@
     
     body:not(.dragging) .drop-zone .reactant:hover {
       box-shadow: 0 10px 30px rgba(231,76,60,0.4), 0 0 0 6px rgba(231,76,60,0.15);
-      background: rgba(231,76,60,0.2); transform: translateY(-6px) scale(1.02); color: #ffcccc;
+      background: rgba(231,76,60,0.2); transform: translateY(-6px) scale(1.02); color: #ffcccc; cursor: pointer;
     }
     .dragging .drop-zone .reactant { pointer-events: none; }
 
@@ -203,7 +255,6 @@
       color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.5);
     }
 
-    /* Animation for empty slots when dragging - Pink Edition */
     .drop-zone.highlight-free {
       border-color: rgba(255, 182, 193, 0.8); background: rgba(255, 105, 180, 0.15); 
       box-shadow: 0 0 25px rgba(255, 105, 180, 0.3), inset 0 0 10px rgba(255, 105, 180, 0.1); transform: scale(1.02); animation: pinkSlotPulse 1.8s infinite ease-in-out;
@@ -227,65 +278,151 @@
       80% { transform: translate(1px, 2px) rotate(-1deg); }
       100% { transform: translate(-1px, -2px) rotate(1deg); }
     }
+	/* Shake animation specifically for the centered header text */
+    body.reacting #intro-text.moved { 
+      animation: textShake 0.3s infinite; 
+    }
+    
+    @keyframes textShake {
+      0% { transform: translate(calc(-50% + 3px), 2px) rotate(0deg); }
+      20% { transform: translate(calc(-50% - 3px), -2px) rotate(-1deg); }
+      40% { transform: translate(calc(-50% - 3px), 2px) rotate(1deg); }
+      60% { transform: translate(calc(-50% + 3px), -2px) rotate(0deg); }
+      80% { transform: translate(calc(-50% + 1px), 2px) rotate(-1deg); }
+      100% { transform: translate(calc(-50% - 1px), -2px) rotate(1deg); }
+    }
 
     /* ==========================================================
-       MOBILE OPTIMIZATION (Layout Adjustments & Horizontal Scroll)
+       MOBILE OPTIMIZATION
        ========================================================== */
     @media (max-width:780px) {
-      /* Reagents Menu: Converts to a horizontal scrollable row */
-      .top-menu.expanded { height: auto; padding: 14px 10px; max-height: 45vh; }
+      .top-menu.expanded { height: auto; padding: 14px 10px; max-height: 55vh; }
+      .reagents-wrapper { overflow-x: auto; overflow-y: hidden; }
       .reagents-container {
-        display: flex; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden;
-        gap: 12px; padding-bottom: 12px; -webkit-overflow-scrolling: touch;
+        display: flex; flex-wrap: nowrap; gap: 12px; padding-bottom: 12px; -webkit-overflow-scrolling: touch;
       }
       .reagent { flex: 0 0 110px; padding: 10px; }
-
-      /* Drop Zones & Workspace: Stack vertically */
       .center-zones { gap:10px; flex-direction:column; width: 100%; }
       .reaction-button { margin-top:12px; width:70px; height:70px; font-size: 2rem; }
       .drop-zone { width: 100%; height:100px; }
       .central-area { flex-direction:column; gap:16px; width: 100%; }
       .plus { font-size: 2rem; transform: rotate(0deg); }
-
-      /* Results Block: Stack vertically */
       .result-row { flex-direction: column; text-align: center; gap: 12px; }
       .result-left { max-width: 100%; width: 100%; }
       .result-arrow { transform: rotate(90deg); margin: 6px 0; font-size: 2rem; }
       .result-products { justify-content: center; width: 100%; }
       .product-card { min-width: 120px; flex: 1 1 auto; align-items: center; }
+      .search-input { width: 100%; margin-bottom: 6px; }
     }
-	/* ----- Reaction Selection Modal ----- */
-.reaction-modal-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.4); 
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  display: flex; justify-content: center; align-items: center; 
-  z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-}
-.reaction-modal-overlay.show { opacity: 1; pointer-events: auto; }
 
-.reaction-modal {
-  background: rgba(20, 80, 160, 0.25); border: 1px solid rgba(150, 200, 255, 0.4);
-  padding: 24px; border-radius: 20px; box-shadow: 0 15px 50px rgba(0,0,0,0.4);
-  text-align: center; min-width: 320px; max-width: 90%;
-  transform: translateY(20px); transition: transform 0.3s ease;
-}
-.reaction-modal-overlay.show .reaction-modal { transform: translateY(0); }
+    /* ----- Modals ----- */
+    .reaction-modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.4); 
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      display: flex; justify-content: center; align-items: center; 
+      z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .reaction-modal-overlay.show { opacity: 1; pointer-events: auto; }
 
-.reaction-option {
-  background: rgba(255,255,255,0.15); padding: 12px 16px; margin: 10px 0; border-radius: 12px;
-  cursor: pointer; border: 1px solid rgba(255,255,255,0.2); color: white; font-weight: 600;
-  transition: all 0.2s; text-shadow: 0 1px 3px rgba(0,0,0,0.5); font-size: 1.1rem;
-}
-.reaction-option:hover { 
-  background: rgba(46, 204, 113, 0.4); border-color: rgba(46, 204, 113, 0.8); transform: scale(1.02); 
-}
+    .reaction-modal {
+      background: rgba(20, 80, 160, 0.25); border: 1px solid rgba(150, 200, 255, 0.4);
+      padding: 24px; border-radius: 20px; box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+      text-align: center; min-width: 320px; max-width: 90%;
+      transform: translateY(20px); transition: transform 0.3s ease;
+    }
+    .reaction-modal-overlay.show .reaction-modal { transform: translateY(0); }
 
-.cancel-btn {
-  margin-top: 16px; padding: 10px 20px; border: none; border-radius: 12px; font-weight: bold;
-  background: rgba(231,76,60,0.4); color: white; cursor: pointer; 
-  transition: background 0.2s; border: 1px solid rgba(231,76,60,0.6);
-}
-.cancel-btn:hover { background: rgba(231,76,60,0.8); }
+    .reaction-option {
+      background: rgba(255,255,255,0.15); padding: 12px 16px; margin: 10px 0; border-radius: 12px;
+      cursor: pointer; border: 1px solid rgba(255,255,255,0.2); color: white; font-weight: 600;
+      transition: all 0.2s; text-shadow: 0 1px 3px rgba(0,0,0,0.5); font-size: 1.1rem;
+    }
+    .reaction-option:hover { 
+      background: rgba(46, 204, 113, 0.4); border-color: rgba(46, 204, 113, 0.8); transform: scale(1.02); 
+    }
+
+    .cancel-btn {
+      margin-top: 16px; padding: 10px 20px; border: none; border-radius: 12px; font-weight: bold;
+      background: rgba(231,76,60,0.4); color: white; cursor: pointer; 
+      transition: background 0.2s; border: 1px solid rgba(231,76,60,0.6);
+    }
+    .cancel-btn:hover { background: rgba(231,76,60,0.8); }
+
+    .reagent-options-container {
+      max-height: 45vh; overflow-y: auto; padding-right: 8px; margin-bottom: 12px;
+    }
+    .reagent-options-container::-webkit-scrollbar { width: 6px; }
+    .reagent-options-container::-webkit-scrollbar-track { background: transparent; }
+    .reagent-options-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 4px; }
+	/* ----- Intro Animation ----- */
+    #intro-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: radial-gradient(circle at center, rgba(10,30,60,0.85) 0%, rgba(5,15,30,1) 100%);
+      backdrop-filter: blur(15px);
+      transition: opacity 1.2s ease, visibility 1.2s;
+    }
+    
+    #intro-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    #intro-text {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -40%);
+      opacity: 0;
+      font-size: 4rem;
+      font-weight: 800;
+      color: #fff;
+      text-align: center;
+      text-shadow: 0 4px 20px rgba(40, 140, 240, 0.6);
+      padding: 0 20px;
+      z-index: 10001;
+      width: 100%;
+      pointer-events: none;
+      /* Smoothly handles the move and shrink */
+      transition: top 1.2s cubic-bezier(0.25, 1, 0.5, 1), 
+                  transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), 
+                  font-size 1.2s cubic-bezier(0.25, 1, 0.5, 1), 
+                  opacity 0.8s ease-out;
+    }
+
+    #intro-text.visible {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+
+    #intro-text.moved {
+      top: 15px; /* Anchors to the top */
+      transform: translate(-50%, 0);
+      font-size: 2rem; /* Shrinks to header size */
+      opacity: 1;
+      text-shadow: 0 2px 10px rgba(40, 140, 240, 0.8);
+    }
+
+    @media (max-width: 780px) {
+      #intro-text { font-size: 2.5rem; }
+      #intro-text.moved { font-size: 1.4rem; top: 12px; }
+    }
+
+    /* ----- Smooth UI Reveal ----- */
+    #main-content {
+      opacity: 0;
+      margin-top: 55px; /* Leaves room for the header text */
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+    }
+    
+    #main-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
   </style>
 </head>
 <body>
@@ -293,10 +430,24 @@
   <video id="bg-video" src="chemistry_lab_background.mp4" autoplay muted playsinline></video>
   <div id="flash-overlay"></div>
 
+  <div id="intro-screen"></div>
+  <div id="intro-text">Калькулятор хімічних реакцій</div>
   <div id="main-content">
     <div class="top-menu-bar" id="menuBar"><div class="menu-bar-content">Реагенти</div></div>
+    
     <div class="top-menu" id="topMenu">
-      <div class="reagents-container" id="reagentsContainer"></div>
+      <div class="sort-controls">
+        <input type="text" id="topSearchInput" class="search-input" placeholder="Пошук...">
+        <label style="color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.5); font-size: 0.9rem;">Сортувати за:</label>
+        <select id="topSortSelect" class="sort-select">
+          <option value="formula">Формулою</option>
+          <option value="name">Назвою</option>
+          <option value="type">Типом</option>
+        </select>
+      </div>
+      <div class="reagents-wrapper">
+        <div class="reagents-container" id="reagentsContainer"></div>
+      </div>
     </div>
 
     <div class="central-area">
@@ -315,19 +466,38 @@
     <div class="instructions-box">
       <strong style="color:#85c1e9;">Як використовувати?</strong>
       <div style="margin-top:8px;">
-		Натисніть на панель «Реагенти», щоб відкрити список. Ви можете просто натиснути на реагент, щоб він автоматично потрапив у вільну зону, або перетягнути його власноруч. 
+		Ви можете відкрити меню «Реагенти» або просто <strong>натиснути на вільну зону</strong> по центру екрана, щоб обрати речовину. 
 		Додайте один або два компоненти: якщо для них існує можлива реакція, кнопка зі стрілкою (→) засвітиться зеленим. Натисніть її, щоб побачити результат!
 	  </div>
     </div>
   </div>
 
-<div id="reactionModal" class="reaction-modal-overlay">
-      <div class="reaction-modal">
-        <h3 style="margin-bottom: 12px; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">Select Reaction</h3>
-        <div id="reactionOptions"></div>
-        <button id="closeModal" class="cancel-btn">Cancel</button>
-      </div>
+  <div id="reactionModal" class="reaction-modal-overlay">
+    <div class="reaction-modal">
+      <h3 style="margin-bottom: 12px; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">Select Reaction</h3>
+      <div id="reactionOptions"></div>
+      <button id="closeModal" class="cancel-btn">Cancel</button>
     </div>
+  </div>
+
+  <div id="reagentModal" class="reaction-modal-overlay">
+    <div class="reaction-modal">
+      <h3 style="margin-bottom: 12px; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">Оберіть реагент</h3>
+      
+      <div style="display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom: 16px; flex-wrap: wrap;">
+        <input type="text" id="modalSearchInput" class="search-input" placeholder="Пошук...">
+        <label style="color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.5); font-size: 0.9rem;">Сортувати за:</label>
+        <select id="modalSortSelect" class="sort-select">
+          <option value="formula">Формулою</option>
+          <option value="name">Назвою</option>
+          <option value="type">Типом</option>
+        </select>
+      </div>
+
+      <div id="reagentOptions" class="reagent-options-container"></div>
+      <button id="closeReagentModal" class="cancel-btn">Скасувати</button>
+    </div>
+  </div>
 
 <script>
 let allElements = []; 
@@ -343,6 +513,20 @@ const reactionButton = document.getElementById('reactionButton');
 const resultArea = document.getElementById('resultArea');
 const resultRow = document.getElementById('resultRow');
 
+// Top Sorting & Searching
+const topSortSelect = document.getElementById('topSortSelect');
+const topSearchInput = document.getElementById('topSearchInput');
+
+topSortSelect.addEventListener('change', () => {
+  createReagentElements();
+  checkPossibleReactions();
+});
+
+topSearchInput.addEventListener('input', () => {
+  createReagentElements();
+  checkPossibleReactions();
+});
+
 let isDragging = false;
 let isReacting = false; 
 let draggedReagent = null;
@@ -353,7 +537,6 @@ let rightReactant = null;
 let dropZoneTarget = null;
 let dropZoneBlocked = null; 
 
-// Vars for detecting touch drag vs touch scroll
 let potentialDrag = false;
 let potentialDragTarget = null;
 let startCoords = { x:0, y:0 };
@@ -377,8 +560,8 @@ function init() {
 
 function loadDataFiles() {
   return Promise.all([
-    fetch('elements.json').then(r => r.ok ? r.json() : Promise.reject('elements.json not found')),
-    fetch('reactions.json').then(r => r.ok ? r.json() : Promise.reject('reactions.json not found'))
+    fetch('/elements.json').then(r => r.ok ? r.json() : Promise.reject('elements.json not found')),
+    fetch('/reactions.json').then(r => r.ok ? r.json() : Promise.reject('reactions.json not found'))
   ]).then(([elementsData, reactionsData]) => {
     if (elementsData && Array.isArray(elementsData.Elements)) allElements = elementsData.Elements.slice();
     else if (Array.isArray(elementsData)) allElements = elementsData.slice();
@@ -448,36 +631,82 @@ function updateBackgroundBlur() {
 }
 
 function attach3DHover(el) {
+  el.addEventListener('mouseenter', () => {
+    if (isDragging || isReacting || el.classList.contains('disabled')) return;
+    el.style.zIndex = '100'; 
+  });
+
   el.addEventListener('mousemove', (e) => {
     if (isDragging || isReacting || el.classList.contains('disabled')) return;
+    
     const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    const rotX = (y / (rect.height / 2)) * -18; 
-    const rotY = (x / (rect.width / 2)) * 18;
-    el.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.08)`;
-    el.style.boxShadow = `0 15px 35px rgba(0,0,0,0.3)`;
+    const x = e.clientX - rect.left; 
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (-(y - centerY) / 4).toFixed(2); 
+    const rotateY = ((x - centerX) / 4).toFixed(2);
+
+    el.style.setProperty('--x', `${(x / rect.width) * 100}%`);
+    el.style.setProperty('--y', `${(y / rect.height) * 100}%`);
+
+    el.style.transform = `
+        perspective(1000px) 
+        rotateX(${rotateX}deg) 
+        rotateY(${rotateY}deg) 
+        scale(1.1) 
+        translateZ(30px)
+    `;
+
+    el.style.boxShadow = `
+        ${-rotateY}px ${rotateX}px 40px rgba(0, 0, 0, 0.7),
+        0 0 0 2px rgba(255,255,255,0.4)
+    `;
   });
+
   el.addEventListener('mouseleave', () => {
-    if(!el.classList.contains('disabled')) { el.style.transform = ''; el.style.boxShadow = ''; }
+    el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1) translateZ(0px)';
+    el.style.boxShadow = '';
+    el.style.zIndex = '1'; 
   });
 }
 
 function createReagentElements() {
   reagentsContainer.innerHTML = '';
-  reagents.forEach(r => {
+  const sortCriteria = topSortSelect.value;
+  const searchQuery = topSearchInput.value.trim().toLowerCase();
+  
+  // Filter and Sort
+  const filteredReagents = reagents.filter(r => {
+    if (!searchQuery) return true;
+    return (r.name && r.name.toLowerCase().includes(searchQuery)) ||
+           (r.formula && r.formula.toLowerCase().includes(searchQuery)) ||
+           (r.type && r.type.toLowerCase().includes(searchQuery));
+  });
+
+  const sortedReagents = [...filteredReagents].sort((a, b) => {
+    return (a[sortCriteria] || '').localeCompare(b[sortCriteria] || '');
+  });
+
+  if (sortedReagents.length === 0) {
+     reagentsContainer.innerHTML = '<div style="color:#fff; padding:10px; width:100%; text-align:center;">Нічого не знайдено</div>';
+     return;
+  }
+
+  sortedReagents.forEach(r => {
     const el = document.createElement('div');
     el.className = 'reagent'; el.dataset.id = r.id; el.dataset.name = r.name; el.dataset.type = r.type; el.dataset.formula = r.formula;
     el.innerHTML = `<div class="reagent-formula">${r.formula}</div><div class="reagent-name">${r.name}</div><div class="reagent-type">${r.type}</div>`;
     
     attach3DHover(el);
 
-    // Click/Tap to Auto-Place (Perfect for Mobile)
     el.addEventListener('click', (e) => {
       if (isDragging || isReacting || el.classList.contains('disabled')) return;
       let targetZone = null;
-      if (!leftDropZone.querySelector('.reactant')) targetZone = leftDropZone;
-      else if (!rightDropZone.querySelector('.reactant')) targetZone = rightDropZone;
+      if (!leftDropZone.querySelector('.reactant') && !leftDropZone.classList.contains('disabled-zone')) targetZone = leftDropZone;
+      else if (!rightDropZone.querySelector('.reactant') && !rightDropZone.classList.contains('disabled-zone')) targetZone = rightDropZone;
       
       if (targetZone) {
         draggedReagent = { id: parseInt(el.dataset.id), name: el.dataset.name, type: el.dataset.type, formula: el.dataset.formula };
@@ -492,10 +721,131 @@ function createReagentElements() {
   });
 }
 
+// ---- Reagent Click & Modal Logic ----
+const reagentModal = document.getElementById('reagentModal');
+const reagentOptions = document.getElementById('reagentOptions');
+const closeReagentModal = document.getElementById('closeReagentModal');
+const modalSortSelect = document.getElementById('modalSortSelect');
+const modalSearchInput = document.getElementById('modalSearchInput');
+
+let activeZoneForSelection = null;
+let currentAllowedReagents = [];
+
+closeReagentModal.addEventListener('click', () => {
+  reagentModal.classList.remove('show');
+  activeZoneForSelection = null;
+});
+
+// React to modal sort & search change
+modalSortSelect.addEventListener('change', () => {
+  renderModalOptions();
+});
+
+modalSearchInput.addEventListener('input', () => {
+  renderModalOptions();
+});
+
+function handleZoneClick(zone, otherReactant) {
+  if (zone.classList.contains('disabled-zone') || isReacting || isDragging) return;
+  
+  activeZoneForSelection = zone;
+  modalSearchInput.value = ''; // Reset search input on open
+  
+  let allowed = reagents;
+  if (otherReactant) {
+    const compatibles = new Set();
+    reactions.forEach(r => {
+      if(r.Reactants && r.Reactants.length >= 2) {
+        const forms = r.Reactants.map(x => (x.formula || x).toString());
+        if (forms.includes(otherReactant.formula)) {
+          forms.forEach(f => { if (f !== otherReactant.formula) compatibles.add(f); });
+        }
+      }
+    });
+    allowed = reagents.filter(r => compatibles.has(r.formula));
+  }
+
+  currentAllowedReagents = allowed;
+  renderModalOptions();
+  reagentModal.classList.add('show');
+}
+
+function renderModalOptions() {
+  reagentOptions.innerHTML = '';
+  const searchQuery = modalSearchInput.value.trim().toLowerCase();
+  
+  const filteredReagents = currentAllowedReagents.filter(r => {
+    if (!searchQuery) return true;
+    return (r.name && r.name.toLowerCase().includes(searchQuery)) ||
+           (r.formula && r.formula.toLowerCase().includes(searchQuery)) ||
+           (r.type && r.type.toLowerCase().includes(searchQuery));
+  });
+
+  if (filteredReagents.length === 0) {
+    reagentOptions.innerHTML = '<div style="color:#fff; padding:10px;">Нічого не знайдено.</div>';
+    return;
+  }
+
+  const sortCriteria = modalSortSelect.value;
+  const sorted = [...filteredReagents].sort((a, b) => {
+    return (a[sortCriteria] || '').localeCompare(b[sortCriteria] || '');
+  });
+
+  sorted.forEach(r => {
+    const btn = document.createElement('div');
+    btn.className = 'reaction-option';
+    btn.innerHTML = `<strong style="font-size:1.2rem;">${r.formula}</strong> - ${r.name} <div style="font-size:0.85rem; color:#abebc6; margin-top:4px;">${r.type}</div>`;
+    btn.onclick = () => selectReagentFromModal(r);
+    reagentOptions.appendChild(btn);
+  });
+}
+
+function selectReagentFromModal(reagentObj) {
+  if (!activeZoneForSelection) return;
+  const zone = activeZoneForSelection;
+  
+  zone.classList.remove('highlight-free');
+  zone.innerHTML = '';
+  const rEl = document.createElement('div');
+  rEl.className = 'reactant active'; 
+  rEl.textContent = reagentObj.formula; 
+  rEl.dataset.id = reagentObj.id; 
+  rEl.dataset.type = reagentObj.type;
+  zone.appendChild(rEl);
+
+  rEl.addEventListener('click', (ev) => { 
+    ev.stopPropagation(); 
+    if(!isReacting) removeFromZone(zone, parseInt(rEl.dataset.id)); 
+  });
+
+  if (zone === leftDropZone) leftReactant = reagentObj; 
+  else rightReactant = reagentObj;
+
+  checkPossibleReactions(); 
+  updateReactionButtonState(); 
+  updateBackgroundBlur();
+  
+  reagentModal.classList.remove('show');
+  activeZoneForSelection = null;
+}
+
 function setupEventListeners() {
   menuBar.addEventListener('click', () => { topMenu.classList.toggle('expanded'); menuBar.classList.toggle('expanded'); });
-  leftDropZone.addEventListener('dragover', e => e.preventDefault()); rightDropZone.addEventListener('dragover', e => e.preventDefault());
-  leftDropZone.addEventListener('drop', handleDrop); rightDropZone.addEventListener('drop', handleDrop);
+  
+  leftDropZone.addEventListener('dragover', e => e.preventDefault()); 
+  rightDropZone.addEventListener('dragover', e => e.preventDefault());
+  leftDropZone.addEventListener('drop', handleDrop); 
+  rightDropZone.addEventListener('drop', handleDrop);
+
+  leftDropZone.addEventListener('click', (e) => {
+    if (e.target.closest('.reactant')) return; 
+    handleZoneClick(leftDropZone, rightReactant);
+  });
+  rightDropZone.addEventListener('click', (e) => {
+    if (e.target.closest('.reactant')) return; 
+    handleZoneClick(rightDropZone, leftReactant);
+  });
+
   reactionButton.addEventListener('click', performReaction);
   document.addEventListener('mousemove', handleDrag); document.addEventListener('mouseup', endDrag);
   document.addEventListener('touchmove', handleDrag, { passive:false }); document.addEventListener('touchend', endDrag);
@@ -549,13 +899,15 @@ function initiateActualDrag(target, clientX, clientY) {
   target.classList.add('dragging');
   dragRafId = requestAnimationFrame(dragPhysicsLoop); 
   
-  [leftDropZone, rightDropZone].forEach(zone => { if (!zone.querySelector('.reactant')) zone.classList.add('highlight-free'); });
+  [leftDropZone, rightDropZone].forEach(zone => { 
+    if (!zone.querySelector('.reactant') && !zone.classList.contains('disabled-zone')) zone.classList.add('highlight-free'); 
+  });
 }
 
 function handleDrag(e) {
   let clientX, clientY;
   if (e.type === 'touchmove') {
-    if (isDragging) e.preventDefault(); // ONLY hijack scroll if genuinely dragging
+    if (isDragging) e.preventDefault(); 
     if (!e.touches || !e.touches[0]) return;
     clientX = e.touches[0].clientX; clientY = e.touches[0].clientY;
   } else {
@@ -566,8 +918,8 @@ function handleDrag(e) {
 
   if (potentialDrag && !isDragging) {
      const dx = Math.abs(clientX - startCoords.x); const dy = Math.abs(clientY - startCoords.y);
-     if (dy > 15 && dy > dx) initiateActualDrag(potentialDragTarget, clientX, clientY); // Intent is vertical: DRAG
-     else if (dx > 15) potentialDrag = false; // Intent is horizontal: CANCEL DRAG & ALLOW SCROLL
+     if (dy > 15 && dy > dx) initiateActualDrag(potentialDragTarget, clientX, clientY); 
+     else if (dx > 15) potentialDrag = false; 
   }
 
   if (!isDragging || !draggedElement) return;
@@ -578,7 +930,7 @@ function handleDrag(e) {
   const zone = hit.closest('.drop-zone');
 
   if (zone) {
-    if (zone.querySelector('.reactant')) {
+    if (zone.querySelector('.reactant') || zone.classList.contains('disabled-zone')) {
       clearDropZoneHighlight(); dropZoneTarget = null; document.body.style.cursor = 'not-allowed'; draggedElement.style.opacity = "0.55";
       return;
     } else {
@@ -633,7 +985,7 @@ function returnToOriginalPosition() {
 
 function handleDrop(e) {
   const zone = e.currentTarget;
-  if (!zone || !draggedReagent) return;
+  if (!zone || !draggedReagent || zone.classList.contains('disabled-zone')) return;
 
   zone.classList.remove('highlight-free');
   if (zone.querySelector('.reactant')) { returnToOriginalPosition(); return; }
@@ -712,16 +1064,33 @@ function checkPossibleReactions() {
   const rightPlaced = rightReactant ? rightReactant.formula : null;
   const reagentNodes = Array.from(document.querySelectorAll('.reagent'));
 
-  if (!leftPlaced && !rightPlaced) { reagentNodes.forEach(n => n.classList.remove('highlighted','greyed','disabled')); return; }
-  if (leftPlaced && rightPlaced) { reagentNodes.forEach(n => { n.classList.add('greyed','disabled'); n.classList.remove('highlighted'); n.style.transform = ''; }); return; }
+  leftDropZone.classList.remove('disabled-zone');
+  rightDropZone.classList.remove('disabled-zone');
+
+  if (!leftPlaced && !rightPlaced) { 
+    reagentNodes.forEach(n => n.classList.remove('highlighted','greyed','disabled')); 
+    return; 
+  }
+  if (leftPlaced && rightPlaced) { 
+    reagentNodes.forEach(n => { n.classList.add('greyed','disabled'); n.classList.remove('highlighted'); n.style.transform = ''; }); 
+    return; 
+  }
 
   const placedFormula = leftPlaced || rightPlaced;
   const compatibles = new Set();
+  
   if (reactions && reactions.length) {
     reactions.forEach(r => {
-      const forms = r.Reactants.map(x => (x.formula || x).toString());
-      if (forms.includes(placedFormula)) forms.forEach(f => { if (f !== placedFormula) compatibles.add(f); });
+      if (r.Reactants && r.Reactants.length >= 2) {
+         const forms = r.Reactants.map(x => (x.formula || x).toString());
+         if (forms.includes(placedFormula)) forms.forEach(f => { if (f !== placedFormula) compatibles.add(f); });
+      }
     });
+  }
+
+  if (compatibles.size === 0) {
+      if (leftPlaced) rightDropZone.classList.add('disabled-zone');
+      if (rightPlaced) leftDropZone.classList.add('disabled-zone');
   }
 
   reagentNodes.forEach(n => {
@@ -732,17 +1101,14 @@ function checkPossibleReactions() {
   });
 }
 
-// Grab the new modal elements
-const reactionModal = document.getElementById('reactionModal');
+const reactionModalWin = document.getElementById('reactionModal');
 const reactionOptionsContainer = document.getElementById('reactionOptions');
 const closeModalBtn = document.getElementById('closeModal');
 
-// Close modal event
 closeModalBtn.addEventListener('click', () => {
-  reactionModal.classList.remove('show');
+  reactionModalWin.classList.remove('show');
 });
 
-// Replaced performReaction function
 function performReaction() {
   if (isReacting || !reactionButton.classList.contains('active')) return;
   if (!leftReactant && !rightReactant) return; 
@@ -770,27 +1136,24 @@ function performReaction() {
   
   if (matches.length === 0) return;
 
-  // If only one reaction matches, execute it normally
   if (matches.length === 1) {
     executeReaction(matches[0]);
   } else {
-    // If multiple matches exist, show the modal
     reactionOptionsContainer.innerHTML = '';
     matches.forEach((match, index) => {
       const btn = document.createElement('div');
       btn.className = 'reaction-option';
       btn.textContent = match.name || `Reaction Option ${index + 1}`;
       btn.onclick = () => {
-        reactionModal.classList.remove('show');
+        reactionModalWin.classList.remove('show');
         executeReaction(match);
       };
       reactionOptionsContainer.appendChild(btn);
     });
-    reactionModal.classList.add('show');
+    reactionModalWin.classList.add('show');
   }
 }
 
-// New function to handle the visual execution (previously inside performReaction)
 function executeReaction(match) {
   isReacting = true; resultArea.classList.remove('show');
   document.documentElement.style.setProperty('--reaction-color', `hsl(${Math.floor(Math.random() * 360)}, 100%, 70%)`);
@@ -839,6 +1202,10 @@ function executeReaction(match) {
     });
 
     document.querySelectorAll('.reagent').forEach(n => n.classList.remove('highlighted','greyed','disabled'));
+    
+    leftDropZone.classList.remove('disabled-zone');
+    rightDropZone.classList.remove('disabled-zone');
+
     updateReactionButtonState(); updateBackgroundBlur(); isReacting = false; 
   }, 1200); 
 }
@@ -862,8 +1229,30 @@ function playReverse() {
   }
 }
 
-window.addEventListener('DOMContentLoaded', init);
+window.addEventListener('DOMContentLoaded', () => {
+  init(); // Build the DOM elements in the background
+
+  const introText = document.getElementById('intro-text');
+  
+  // Fade the text in to the center of the screen instantly on load
+  setTimeout(() => {
+    if (introText) introText.classList.add('visible');
+  }, 50);
+
+  // Wait 1.5 seconds, then move the text up and reveal the workspace
+  setTimeout(() => {
+    const introScreen = document.getElementById('intro-screen');
+    const mainContent = document.getElementById('main-content');
+    
+    if (introScreen) introScreen.classList.add('hidden');
+    if (mainContent) mainContent.classList.add('visible');
+    
+    if (introText) {
+      introText.classList.remove('visible'); // Swap out center positioning...
+      introText.classList.add('moved');      // ...for the top-header positioning
+    }
+  }, 1500);
+});
 </script>
 </body>
-
 </html>
