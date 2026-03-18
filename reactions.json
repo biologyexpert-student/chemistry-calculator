@@ -1159,6 +1159,606 @@
         { "formula": "Zn", "amount": 1 },
         { "formula": "CO", "amount": 1 }
       ]
-    }
+    },
+	{
+    "name": "Барій та кисень",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "Ba", "amount": 2 }, { "formula": "O2", "amount": 1 }],
+    "Products": [{ "formula": "BaO", "amount": 2 }]
+  },
+  {
+    "name": "Стронцій та кисень",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "Sr", "amount": 2 }, { "formula": "O2", "amount": 1 }],
+    "Products": [{ "formula": "SrO", "amount": 2 }]
+  },
+  {
+    "name": "Літій та хлор",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "Li", "amount": 2 }, { "formula": "Cl2", "amount": 1 }],
+    "Products": [{ "formula": "LiCl", "amount": 2 }]
+  },
+  {
+    "name": "Натрій та бром",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "Na", "amount": 2 }, { "formula": "Br2", "amount": 1 }],
+    "Products": [{ "formula": "NaBr", "amount": 2 }]
+  },
+  {
+    "name": "Калій та йод",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "K", "amount": 2 }, { "formula": "I2", "amount": 1 }],
+    "Products": [{ "formula": "KI", "amount": 2 }]
+  },
+  {
+    "name": "Кальцій та хлор",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "Ca", "amount": 1 }, { "formula": "Cl2", "amount": 1 }],
+    "Products": [{ "formula": "CaCl2", "amount": 1 }]
+  },
+  {
+    "name": "Магній та хлор",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "Mg", "amount": 1 }, { "formula": "Cl2", "amount": 1 }],
+    "Products": [{ "formula": "MgCl2", "amount": 1 }]
+  },
+  {
+    "name": "Алюміній та хлор",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "Al", "amount": 2 }, { "formula": "Cl2", "amount": 3 }],
+    "Products": [{ "formula": "AlCl3", "amount": 2 }]
+  },
+  {
+    "name": "Залізо та сірка",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "Fe", "amount": 1 }, { "formula": "S", "amount": 1 }],
+    "Products": [{ "formula": "FeS", "amount": 1 }]
+  },
+  {
+    "name": "Цинк та сірка",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "Zn", "amount": 1 }, { "formula": "S", "amount": 1 }],
+    "Products": [{ "formula": "ZnS", "amount": 1 }]
+  },
+  {
+    "name": "Мідь та хлор",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "Cu", "amount": 1 }, { "formula": "Cl2", "amount": 1 }],
+    "Products": [{ "formula": "CuCl2", "amount": 1 }]
+  },
+  {
+    "name": "Азот та кисень",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "N2", "amount": 1 }, { "formula": "O2", "amount": 1 }],
+    "Products": [{ "formula": "NO", "amount": 2 }]
+  },
+  {
+    "name": "Сірка та хлор",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "S", "amount": 1 }, { "formula": "Cl2", "amount": 1 }],
+    "Products": [{ "formula": "SCl2", "amount": 1 }]
+  },
+  {
+    "name": "Фосфор та хлор (III)",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "P", "amount": 2 }, { "formula": "Cl2", "amount": 3 }],
+    "Products": [{ "formula": "PCl3", "amount": 2 }]
+  },
+  {
+    "name": "Фосфор та хлор (V)",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "P", "amount": 2 }, { "formula": "Cl2", "amount": 5 }],
+    "Products": [{ "formula": "PCl5", "amount": 2 }]
+  },
+  {
+    "name": "Водень та йод",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "H2", "amount": 1 }, { "formula": "I2", "amount": 1 }],
+    "Products": [{ "formula": "HI", "amount": 2 }]
+  },
+  {
+    "name": "Водень та бром",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "H2", "amount": 1 }, { "formula": "Br2", "amount": 1 }],
+    "Products": [{ "formula": "HBr", "amount": 2 }]
+  },
+  {
+    "name": "Водень та хлор",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "H2", "amount": 1 }, { "formula": "Cl2", "amount": 1 }],
+    "Products": [{ "formula": "HCl", "amount": 2 }]
+  },
+  {
+    "name": "Вуглець та сірка",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "C", "amount": 1 }, { "formula": "S", "amount": 2 }],
+    "Products": [{ "formula": "CS2", "amount": 1 }]
+  },
+  {
+    "name": "Рубідій та хлор",
+    "rtype": "синтез",
+    "Reactants": [{ "formula": "Rb", "amount": 2 }, { "formula": "Cl2", "amount": 1 }],
+    "Products": [{ "formula": "RbCl", "amount": 2 }]
+  },
+  {
+    "name": "Розклад карбонату барію",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "BaCO3", "amount": 1 }],
+    "Products": [{ "formula": "BaO", "amount": 1 }, { "formula": "CO2", "amount": 1 }]
+  },
+  {
+    "name": "Розклад карбонату стронцію",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "SrCO3", "amount": 1 }],
+    "Products": [{ "formula": "SrO", "amount": 1 }, { "formula": "CO2", "amount": 1 }]
+  },
+  {
+    "name": "Розклад карбонату літію",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "Li2CO3", "amount": 1 }],
+    "Products": [{ "formula": "Li2O", "amount": 1 }, { "formula": "CO2", "amount": 1 }]
+  },
+  {
+    "name": "Розклад хлорату натрію",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "NaClO3", "amount": 2 }],
+    "Products": [{ "formula": "NaCl", "amount": 2 }, { "formula": "O2", "amount": 3 }]
+  },
+  {
+    "name": "Розклад гідроксиду літію",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "LiOH", "amount": 2 }],
+    "Products": [{ "formula": "Li2O", "amount": 1 }, { "formula": "H2O", "amount": 1 }]
+  },
+  {
+    "name": "Розклад гідроксиду кальцію",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "Ca(OH)2", "amount": 1 }],
+    "Products": [{ "formula": "CaO", "amount": 1 }, { "formula": "H2O", "amount": 1 }]
+  },
+  {
+    "name": "Розклад гідроксиду магнію",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "Mg(OH)2", "amount": 1 }],
+    "Products": [{ "formula": "MgO", "amount": 1 }, { "formula": "H2O", "amount": 1 }]
+  },
+  {
+    "name": "Розклад гідроксиду барію",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "Ba(OH)2", "amount": 1 }],
+    "Products": [{ "formula": "BaO", "amount": 1 }, { "formula": "H2O", "amount": 1 }]
+  },
+  {
+    "name": "Розклад гідроксиду заліза (III)",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "Fe(OH)3", "amount": 2 }],
+    "Products": [{ "formula": "Fe2O3", "amount": 1 }, { "formula": "H2O", "amount": 3 }]
+  },
+  {
+    "name": "Розклад гідроксиду міді (II)",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "Cu(OH)2", "amount": 1 }],
+    "Products": [{ "formula": "CuO", "amount": 1 }, { "formula": "H2O", "amount": 1 }]
+  },
+  {
+    "name": "Розклад гідроксиду алюмінію",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "Al(OH)3", "amount": 2 }],
+    "Products": [{ "formula": "Al2O3", "amount": 1 }, { "formula": "H2O", "amount": 3 }]
+  },
+  {
+    "name": "Розклад сульфітної кислоти",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "H2SO3", "amount": 1 }],
+    "Products": [{ "formula": "H2O", "amount": 1 }, { "formula": "SO2", "amount": 1 }]
+  },
+  {
+    "name": "Розклад силікатної кислоти",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "H2SiO3", "amount": 1 }],
+    "Products": [{ "formula": "H2O", "amount": 1 }, { "formula": "SiO2", "amount": 1 }]
+  },
+  {
+    "name": "Розклад нітрату срібла",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "AgNO3", "amount": 2 }],
+    "Products": [{ "formula": "Ag", "amount": 2 }, { "formula": "NO2", "amount": 2 }, { "formula": "O2", "amount": 1 }]
+  },
+  {
+    "name": "Розклад нітрату міді (II)",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "Cu(NO3)2", "amount": 2 }],
+    "Products": [{ "formula": "CuO", "amount": 2 }, { "formula": "NO2", "amount": 4 }, { "formula": "O2", "amount": 1 }]
+  },
+  {
+    "name": "Розклад нітрату цинку",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "Zn(NO3)2", "amount": 2 }],
+    "Products": [{ "formula": "ZnO", "amount": 2 }, { "formula": "NO2", "amount": 4 }, { "formula": "O2", "amount": 1 }]
+  },
+  {
+    "name": "Розклад карбонату нікелю",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "NiCO3", "amount": 1 }],
+    "Products": [{ "formula": "NiO", "amount": 1 }, { "formula": "CO2", "amount": 1 }]
+  },
+  {
+    "name": "Розклад карбонату марганцю",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "MnCO3", "amount": 1 }],
+    "Products": [{ "formula": "MnO", "amount": 1 }, { "formula": "CO2", "amount": 1 }]
+  },
+  {
+    "name": "Розклад карбонату свинцю",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "PbCO3", "amount": 1 }],
+    "Products": [{ "formula": "PbO", "amount": 1 }, { "formula": "CO2", "amount": 1 }]
+  },
+  {
+    "name": "Розклад озону",
+    "rtype": "розклад",
+    "Reactants": [{ "formula": "O3", "amount": 2 }],
+    "Products": [{ "formula": "O2", "amount": 3 }]
+  },
+  {
+    "name": "Горіння пентану",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C5H12", "amount": 1 }, { "formula": "O2", "amount": 8 }],
+    "Products": [{ "formula": "CO2", "amount": 5 }, { "formula": "H2O", "amount": 6 }]
+  },
+  {
+    "name": "Горіння гексану",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C6H14", "amount": 2 }, { "formula": "O2", "amount": 19 }],
+    "Products": [{ "formula": "CO2", "amount": 12 }, { "formula": "H2O", "amount": 14 }]
+  },
+  {
+    "name": "Горіння гептану",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C7H16", "amount": 1 }, { "formula": "O2", "amount": 11 }],
+    "Products": [{ "formula": "CO2", "amount": 7 }, { "formula": "H2O", "amount": 8 }]
+  },
+  {
+    "name": "Горіння нонану",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C9H20", "amount": 1 }, { "formula": "O2", "amount": 14 }],
+    "Products": [{ "formula": "CO2", "amount": 9 }, { "formula": "H2O", "amount": 10 }]
+  },
+  {
+    "name": "Горіння декану",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C10H22", "amount": 2 }, { "formula": "O2", "amount": 31 }],
+    "Products": [{ "formula": "CO2", "amount": 20 }, { "formula": "H2O", "amount": 22 }]
+  },
+  {
+    "name": "Горіння етилену",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C2H4", "amount": 1 }, { "formula": "O2", "amount": 3 }],
+    "Products": [{ "formula": "CO2", "amount": 2 }, { "formula": "H2O", "amount": 2 }]
+  },
+  {
+    "name": "Горіння пропілену",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C3H6", "amount": 2 }, { "formula": "O2", "amount": 9 }],
+    "Products": [{ "formula": "CO2", "amount": 6 }, { "formula": "H2O", "amount": 6 }]
+  },
+  {
+    "name": "Горіння бутену",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C4H8", "amount": 1 }, { "formula": "O2", "amount": 6 }],
+    "Products": [{ "formula": "CO2", "amount": 4 }, { "formula": "H2O", "amount": 4 }]
+  },
+  {
+    "name": "Горіння пентену",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C5H10", "amount": 2 }, { "formula": "O2", "amount": 15 }],
+    "Products": [{ "formula": "CO2", "amount": 10 }, { "formula": "H2O", "amount": 10 }]
+  },
+  {
+    "name": "Горіння пропіну",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C3H4", "amount": 1 }, { "formula": "O2", "amount": 4 }],
+    "Products": [{ "formula": "CO2", "amount": 3 }, { "formula": "H2O", "amount": 2 }]
+  },
+  {
+    "name": "Горіння бутину",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C4H6", "amount": 2 }, { "formula": "O2", "amount": 11 }],
+    "Products": [{ "formula": "CO2", "amount": 8 }, { "formula": "H2O", "amount": 6 }]
+  },
+  {
+    "name": "Горіння фенолу",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C6H5OH", "amount": 1 }, { "formula": "O2", "amount": 7 }],
+    "Products": [{ "formula": "CO2", "amount": 6 }, { "formula": "H2O", "amount": 3 }]
+  },
+  {
+    "name": "Горіння диметилового етеру",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "CH3OCH3", "amount": 1 }, { "formula": "O2", "amount": 3 }],
+    "Products": [{ "formula": "CO2", "amount": 2 }, { "formula": "H2O", "amount": 3 }]
+  },
+  {
+    "name": "Горіння діетилового етеру",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C2H5OC2H5", "amount": 1 }, { "formula": "O2", "amount": 6 }],
+    "Products": [{ "formula": "CO2", "amount": 4 }, { "formula": "H2O", "amount": 5 }]
+  },
+  {
+    "name": "Горіння формальдегіду",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "HCHO", "amount": 1 }, { "formula": "O2", "amount": 1 }],
+    "Products": [{ "formula": "CO2", "amount": 1 }, { "formula": "H2O", "amount": 1 }]
+  },
+  {
+    "name": "Горіння ацетальдегіду",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "CH3CHO", "amount": 2 }, { "formula": "O2", "amount": 5 }],
+    "Products": [{ "formula": "CO2", "amount": 4 }, { "formula": "H2O", "amount": 4 }]
+  },
+  {
+    "name": "Горіння пропанолу",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C3H7OH", "amount": 2 }, { "formula": "O2", "amount": 9 }],
+    "Products": [{ "formula": "CO2", "amount": 6 }, { "formula": "H2O", "amount": 8 }]
+  },
+  {
+    "name": "Горіння бутанолу",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "C4H9OH", "amount": 1 }, { "formula": "O2", "amount": 6 }],
+    "Products": [{ "formula": "CO2", "amount": 4 }, { "formula": "H2O", "amount": 5 }]
+  },
+  {
+    "name": "Горіння сірковуглецю",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "CS2", "amount": 1 }, { "formula": "O2", "amount": 3 }],
+    "Products": [{ "formula": "CO2", "amount": 1 }, { "formula": "SO2", "amount": 2 }]
+  },
+  {
+    "name": "Горіння сірководню",
+    "rtype": "горіння",
+    "Reactants": [{ "formula": "H2S", "amount": 2 }, { "formula": "O2", "amount": 3 }],
+    "Products": [{ "formula": "SO2", "amount": 2 }, { "formula": "H2O", "amount": 2 }]
+  },
+  {
+    "name": "Мурашина кислота та гідроксид натрію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "HCOOH", "amount": 1 }, { "formula": "NaOH", "amount": 1 }],
+    "Products": [{ "formula": "HCOONa", "amount": 1 }, { "formula": "H2O", "amount": 1 }]
+  },
+  {
+    "name": "Мурашина кислота та гідроксид калію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "HCOOH", "amount": 1 }, { "formula": "KOH", "amount": 1 }],
+    "Products": [{ "formula": "HCOOK", "amount": 1 }, { "formula": "H2O", "amount": 1 }]
+  },
+  {
+    "name": "Оцтова кислота та гідроксид калію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "CH3COOH", "amount": 1 }, { "formula": "KOH", "amount": 1 }],
+    "Products": [{ "formula": "CH3COOK", "amount": 1 }, { "formula": "H2O", "amount": 1 }]
+  },
+  {
+    "name": "Оцтова кислота та гідроксид літію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "CH3COOH", "amount": 1 }, { "formula": "LiOH", "amount": 1 }],
+    "Products": [{ "formula": "CH3COOLi", "amount": 1 }, { "formula": "H2O", "amount": 1 }]
+  },
+  {
+    "name": "Пропіонова кислота та гідроксид натрію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "C2H5COOH", "amount": 1 }, { "formula": "NaOH", "amount": 1 }],
+    "Products": [{ "formula": "C2H5COONa", "amount": 1 }, { "formula": "H2O", "amount": 1 }]
+  },
+  {
+    "name": "Пропіонова кислота та гідроксид калію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "C2H5COOH", "amount": 1 }, { "formula": "KOH", "amount": 1 }],
+    "Products": [{ "formula": "C2H5COOK", "amount": 1 }, { "formula": "H2O", "amount": 1 }]
+  },
+  {
+    "name": "Нітратна кислота та гідроксид літію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "HNO3", "amount": 1 }, { "formula": "LiOH", "amount": 1 }],
+    "Products": [{ "formula": "LiNO3", "amount": 1 }, { "formula": "H2O", "amount": 1 }]
+  },
+  {
+    "name": "Нітратна кислота та гідроксид магнію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "HNO3", "amount": 2 }, { "formula": "Mg(OH)2", "amount": 1 }],
+    "Products": [{ "formula": "Mg(NO3)2", "amount": 1 }, { "formula": "H2O", "amount": 2 }]
+  },
+  {
+    "name": "Нітратна кислота та гідроксид кальцію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "HNO3", "amount": 2 }, { "formula": "Ca(OH)2", "amount": 1 }],
+    "Products": [{ "formula": "Ca(NO3)2", "amount": 1 }, { "formula": "H2O", "amount": 2 }]
+  },
+  {
+    "name": "Хлоридна кислота та гідроксид барію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "HCl", "amount": 2 }, { "formula": "Ba(OH)2", "amount": 1 }],
+    "Products": [{ "formula": "BaCl2", "amount": 1 }, { "formula": "H2O", "amount": 2 }]
+  },
+  {
+    "name": "Бромідна кислота та гідроксид барію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "HBr", "amount": 2 }, { "formula": "Ba(OH)2", "amount": 1 }],
+    "Products": [{ "formula": "BaBr2", "amount": 1 }, { "formula": "H2O", "amount": 2 }]
+  },
+  {
+    "name": "Йодидна кислота та гідроксид кальцію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "HI", "amount": 2 }, { "formula": "Ca(OH)2", "amount": 1 }],
+    "Products": [{ "formula": "CaI2", "amount": 1 }, { "formula": "H2O", "amount": 2 }]
+  },
+  {
+    "name": "Сульфатна кислота та гідроксид калію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "H2SO4", "amount": 1 }, { "formula": "KOH", "amount": 2 }],
+    "Products": [{ "formula": "K2SO4", "amount": 1 }, { "formula": "H2O", "amount": 2 }]
+  },
+  {
+    "name": "Сульфатна кислота та гідроксид літію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "H2SO4", "amount": 1 }, { "formula": "LiOH", "amount": 2 }],
+    "Products": [{ "formula": "Li2SO4", "amount": 1 }, { "formula": "H2O", "amount": 2 }]
+  },
+  {
+    "name": "Сульфатна кислота та гідроксид магнію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "H2SO4", "amount": 1 }, { "formula": "Mg(OH)2", "amount": 1 }],
+    "Products": [{ "formula": "MgSO4", "amount": 1 }, { "formula": "H2O", "amount": 2 }]
+  },
+  {
+    "name": "Сульфатна кислота та гідроксид барію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "H2SO4", "amount": 1 }, { "formula": "Ba(OH)2", "amount": 1 }],
+    "Products": [{ "formula": "BaSO4", "amount": 1 }, { "formula": "H2O", "amount": 2 }]
+  },
+  {
+    "name": "Ортофосфатна кислота та гідроксид калію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "H3PO4", "amount": 1 }, { "formula": "KOH", "amount": 3 }],
+    "Products": [{ "formula": "K3PO4", "amount": 1 }, { "formula": "H2O", "amount": 3 }]
+  },
+  {
+    "name": "Ортофосфатна кислота та гідроксид літію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "H3PO4", "amount": 1 }, { "formula": "LiOH", "amount": 3 }],
+    "Products": [{ "formula": "Li3PO4", "amount": 1 }, { "formula": "H2O", "amount": 3 }]
+  },
+  {
+    "name": "Ортофосфатна кислота та гідроксид магнію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "H3PO4", "amount": 2 }, { "formula": "Mg(OH)2", "amount": 3 }],
+    "Products": [{ "formula": "Mg3(PO4)2", "amount": 1 }, { "formula": "H2O", "amount": 6 }]
+  },
+  {
+    "name": "Ортофосфатна кислота та гідроксид барію",
+    "rtype": "нейтралізація",
+    "Reactants": [{ "formula": "H3PO4", "amount": 2 }, { "formula": "Ba(OH)2", "amount": 3 }],
+    "Products": [{ "formula": "Ba3(PO4)2", "amount": 1 }, { "formula": "H2O", "amount": 6 }]
+  },
+  {
+    "name": "Бромід барію та сульфат калію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "BaBr2", "amount": 1 }, { "formula": "K2SO4", "amount": 1 }],
+    "Products": [{ "formula": "BaSO4", "amount": 1 }, { "formula": "KBr", "amount": 2 }]
+  },
+  {
+    "name": "Нітрат барію та сульфат калію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "Ba(NO3)2", "amount": 1 }, { "formula": "K2SO4", "amount": 1 }],
+    "Products": [{ "formula": "BaSO4", "amount": 1 }, { "formula": "KNO3", "amount": 2 }]
+  },
+  {
+    "name": "Нітрат свинцю та сульфат калію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "Pb(NO3)2", "amount": 1 }, { "formula": "K2SO4", "amount": 1 }],
+    "Products": [{ "formula": "PbSO4", "amount": 1 }, { "formula": "KNO3", "amount": 2 }]
+  },
+  {
+    "name": "Нітрат свинцю та сульфат натрію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "Pb(NO3)2", "amount": 1 }, { "formula": "Na2SO4", "amount": 1 }],
+    "Products": [{ "formula": "PbSO4", "amount": 1 }, { "formula": "NaNO3", "amount": 2 }]
+  },
+  {
+    "name": "Ацетат свинцю та сульфат натрію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "Pb(CH3COO)2", "amount": 1 }, { "formula": "Na2SO4", "amount": 1 }],
+    "Products": [{ "formula": "PbSO4", "amount": 1 }, { "formula": "NaCH3COO", "amount": 2 }]
+  },
+  {
+    "name": "Нітрат срібла та хлорид калію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "AgNO3", "amount": 1 }, { "formula": "KCl", "amount": 1 }],
+    "Products": [{ "formula": "AgCl", "amount": 1 }, { "formula": "KNO3", "amount": 1 }]
+  },
+  {
+    "name": "Нітрат срібла та бромід калію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "AgNO3", "amount": 1 }, { "formula": "KBr", "amount": 1 }],
+    "Products": [{ "formula": "AgBr", "amount": 1 }, { "formula": "KNO3", "amount": 1 }]
+  },
+  {
+    "name": "Нітрат срібла та йодид калію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "AgNO3", "amount": 1 }, { "formula": "KI", "amount": 1 }],
+    "Products": [{ "formula": "AgI", "amount": 1 }, { "formula": "KNO3", "amount": 1 }]
+  },
+  {
+    "name": "Нітрат срібла та карбонат натрію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "AgNO3", "amount": 2 }, { "formula": "Na2CO3", "amount": 1 }],
+    "Products": [{ "formula": "Ag2CO3", "amount": 1 }, { "formula": "NaNO3", "amount": 2 }]
+  },
+  {
+    "name": "Нітрат срібла та карбонат калію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "AgNO3", "amount": 2 }, { "formula": "K2CO3", "amount": 1 }],
+    "Products": [{ "formula": "Ag2CO3", "amount": 1 }, { "formula": "KNO3", "amount": 2 }]
+  },
+  {
+    "name": "Хлорид кальцію та карбонат калію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "CaCl2", "amount": 1 }, { "formula": "K2CO3", "amount": 1 }],
+    "Products": [{ "formula": "CaCO3", "amount": 1 }, { "formula": "KCl", "amount": 2 }]
+  },
+  {
+    "name": "Хлорид барію та карбонат калію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "BaCl2", "amount": 1 }, { "formula": "K2CO3", "amount": 1 }],
+    "Products": [{ "formula": "BaCO3", "amount": 1 }, { "formula": "KCl", "amount": 2 }]
+  },
+  {
+    "name": "Хлорид барію та карбонат натрію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "BaCl2", "amount": 1 }, { "formula": "Na2CO3", "amount": 1 }],
+    "Products": [{ "formula": "BaCO3", "amount": 1 }, { "formula": "NaCl", "amount": 2 }]
+  },
+  {
+    "name": "Сульфат магнію та гідроксид натрію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "MgSO4", "amount": 1 }, { "formula": "NaOH", "amount": 2 }],
+    "Products": [{ "formula": "Mg(OH)2", "amount": 1 }, { "formula": "Na2SO4", "amount": 1 }]
+  },
+  {
+    "name": "Сульфат магнію та гідроксид калію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "MgSO4", "amount": 1 }, { "formula": "KOH", "amount": 2 }],
+    "Products": [{ "formula": "Mg(OH)2", "amount": 1 }, { "formula": "K2SO4", "amount": 1 }]
+  },
+  {
+    "name": "Сульфат алюмінію та гідроксид натрію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "Al2(SO4)3", "amount": 1 }, { "formula": "NaOH", "amount": 6 }],
+    "Products": [{ "formula": "Al(OH)3", "amount": 2 }, { "formula": "Na2SO4", "amount": 3 }]
+  },
+  {
+    "name": "Хлорид алюмінію та гідроксид калію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "AlCl3", "amount": 1 }, { "formula": "KOH", "amount": 3 }],
+    "Products": [{ "formula": "Al(OH)3", "amount": 1 }, { "formula": "KCl", "amount": 3 }]
+  },
+  {
+    "name": "Хлорид нікелю та гідроксид натрію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "NiCl2", "amount": 1 }, { "formula": "NaOH", "amount": 2 }],
+    "Products": [{ "formula": "Ni(OH)2", "amount": 1 }, { "formula": "NaCl", "amount": 2 }]
+  },
+  {
+    "name": "Хлорид марганцю та гідроксид калію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "MnCl2", "amount": 1 }, { "formula": "KOH", "amount": 2 }],
+    "Products": [{ "formula": "Mn(OH)2", "amount": 1 }, { "formula": "KCl", "amount": 2 }]
+  },
+  {
+    "name": "Сульфат цинку та гідроксид натрію",
+    "rtype": "осадження",
+    "Reactants": [{ "formula": "ZnSO4", "amount": 1 }, { "formula": "NaOH", "amount": 2 }],
+    "Products": [{ "formula": "Zn(OH)2", "amount": 1 }, { "formula": "Na2SO4", "amount": 1 }]
+  }
   ]
 }
