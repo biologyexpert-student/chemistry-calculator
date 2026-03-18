@@ -96,7 +96,6 @@
 		gap: 14px; padding: 6px; 
 	}
 	
-
     .reagent {
       background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
       border-radius:14px; padding:12px; text-align:center; cursor:grab; 
@@ -108,7 +107,6 @@
       will-change: transform; 
     }
     
-    /* Add a subtle shine effect container inside the card via CSS */
     .reagent::before {
       content: '';
       position: absolute;
@@ -159,7 +157,6 @@
       background: rgba(46, 204, 113, 0.15); box-shadow: 0 0 0 8px rgba(46,204,113,0.2); 
     }
     
-    /* Disabled state for inactive slots */
     .drop-zone.disabled-zone {
       opacity: 0.4 !important; pointer-events: none !important; filter: grayscale(1);
       border-color: rgba(150, 150, 150, 0.4) !important; background: rgba(0, 0, 0, 0.1) !important; box-shadow: none !important;
@@ -205,25 +202,20 @@
 
     /* Result area */
     .result-area { 
-      max-width:900px; margin: 26px auto; padding: 18px; border-radius:18px;
+      max-width:950px; margin: 26px auto; padding: 22px; border-radius:18px;
       background: rgba(20, 80, 160, 0.2); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
       border:1px solid rgba(150, 200, 255, 0.3); box-shadow: 0 8px 30px rgba(0,0,0,0.2); opacity:0; transform: translateY(18px); transition: all .45s ease;
       display:flex; align-items:center; justify-content:center; perspective: 1000px;
     }
     .result-area.show { opacity:1; transform: translateY(0); }
-    .result-row { display:flex; align-items:center; gap:14px; width:100%; }
     
-    .result-left {
-      min-width: 200px; max-width: 260px; padding:12px 14px; border-radius:12px;
-      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-      transform-style: preserve-3d; transition: box-shadow 0.2s;
-    }
-    .result-left .rname { font-weight:700; color:#fff; font-size:1.05rem; margin-bottom:6px; text-shadow: 0 1px 3px rgba(0,0,0,0.6); transform: translateZ(15px); }
-    .result-left .rtype { font-size:.9rem; color:#85c1e9; transform: translateZ(10px); }
+    .result-row { display:flex; flex-direction:column; align-items:center; gap:18px; width:100%; }
+    .equation-row { display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; width:100%; }
 
     .result-arrow { font-size:2.4rem; color:rgba(255,255,255,0.8); text-shadow: 0 2px 5px rgba(0,0,0,0.4); }
-    .result-products { display:flex; gap:10px; flex-wrap:wrap; align-items:center; perspective: 800px; }
+    .result-products { display:flex; gap:10px; flex-wrap:wrap; align-items:center; perspective: 800px; justify-content: center; }
 
+    /* Product Card */
     .product-card {
       min-width:140px; padding:10px 12px; border-radius:12px;
       background: rgba(46, 204, 113, 0.2); border:1px solid rgba(46, 204, 113, 0.4); box-shadow: 0 8px 18px rgba(0,0,0,0.15);
@@ -232,6 +224,17 @@
     .product-card .p-formula { font-weight:700; font-size:1.2rem; color:#fff; text-shadow: 0 2px 5px rgba(0,0,0,0.6); transform: translateZ(20px); }
     .product-card .p-type { font-size:.85rem; color:#abebc6; transform: translateZ(10px); }
     .product-card .p-amount { font-size:.9rem; color:#eaf2f8; font-weight:600; transform: translateZ(5px); }
+    
+    /* Reactant Card */
+    .reactant-card {
+      min-width:140px; padding:10px 12px; border-radius:12px;
+      background: rgba(41, 128, 185, 0.25); border:1px solid rgba(41, 128, 185, 0.5); box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+      display:flex; flex-direction: column; gap:6px; align-items:flex-start; transform-style: preserve-3d; transition: box-shadow 0.2s;
+    }
+    .reactant-card .p-formula { font-weight:700; font-size:1.2rem; color:#fff; text-shadow: 0 2px 5px rgba(0,0,0,0.6); transform: translateZ(20px); }
+    .reactant-card .p-type { font-size:.85rem; color:#85c1e9; transform: translateZ(10px); }
+    .reactant-card .p-amount { font-size:.9rem; color:#eaf2f8; font-weight:600; transform: translateZ(5px); }
+
     .product-plus { font-size: 1.6rem; color: rgba(255,255,255,0.8); padding: 0 6px; user-select: none; display:flex; align-items:center; justify-content:center; }
 
     /* dragging visual */
@@ -307,11 +310,12 @@
       .drop-zone { width: 100%; height:100px; }
       .central-area { flex-direction:column; gap:16px; width: 100%; }
       .plus { font-size: 2rem; transform: rotate(0deg); }
-      .result-row { flex-direction: column; text-align: center; gap: 12px; }
-      .result-left { max-width: 100%; width: 100%; }
+      
+      .result-row { gap: 12px; }
+      .equation-row { flex-direction: column; gap: 8px; }
       .result-arrow { transform: rotate(90deg); margin: 6px 0; font-size: 2rem; }
-      .result-products { justify-content: center; width: 100%; }
-      .product-card { min-width: 120px; flex: 1 1 auto; align-items: center; }
+      .result-products { justify-content: center; width: 100%; flex-wrap: wrap; gap: 8px; }
+      
       .search-input { width: 100%; margin-bottom: 6px; }
     }
 
@@ -605,7 +609,7 @@ function loadDataFiles() {
       { id:4, name:"NaCl", formula:"NaCl", type:"salt" }
     ];
     reagents = allElements.slice();
-    reactions = [{ name: "Acid-Base Neutralization", rtype: "neutralization", Reactants:[ {formula:"HCl"}, {formula:"NaOH"} ], Products:[ {formula:"NaCl", amount:1}, {formula:"H2O", amount:1} ] }];
+    reactions = [{ name: "Acid-Base Neutralization", rtype: "neutralization", Reactants:[ {formula:"HCl", amount:1}, {formula:"NaOH", amount:1} ], Products:[ {formula:"NaCl", amount:1}, {formula:"H2O", amount:1} ] }];
   });
 }
 
@@ -1162,13 +1166,24 @@ function executeReaction(match) {
   setTimeout(() => {
     document.body.classList.remove('reacting');
 
-    const leftHtml = `
-      <div class="result-left" id="newResultLeft">
-        <div class="rname">${escapeHtml(match.name || 'Reaction')}</div>
-        <div class="rtype">${escapeHtml(match.rtype || '')}</div>
-        <div style="margin-top:8px;font-size:.9rem;color:#eaf2f8;">Реагенти: ${escapeHtml(match.Reactants.map(r=>(r.formula || r)).join(' + '))}</div>
+    const titleHtml = `
+      <div id="reactionTitleCard" style="padding:12px 24px; border-radius:12px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); transform-style: preserve-3d; text-align: center; margin-bottom: 6px;">
+        <div style="font-size: 1.5rem; font-weight: 700; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.6); transform: translateZ(15px);">${escapeHtml(match.name || 'Reaction')}</div>
+        <div style="font-size: 1rem; color: #85c1e9; margin-top: 4px; transform: translateZ(10px);">${escapeHtml(match.rtype || '')}</div>
       </div>
     `;
+
+    const reactants = (match.Reactants || []);
+    const reactantHtmlParts = reactants.map((r, idx) => {
+      const formula = (r.formula || r).toString(); const amount = r.amount ?? 1;
+      const elem = allElements.find(x => x.formula === formula) || {};
+      return `
+        <div class="reactant-card" id="newReactant_${idx}" title="${escapeHtml(elem.name || formula)}">
+          <div class="p-formula">${escapeHtml(formula)}</div><div class="p-type">${escapeHtml(elem.type || 'unknown')}</div>
+          <div class="p-amount">кількість: ${escapeHtml(String(amount))}</div>
+        </div>
+      `;
+    });
 
     const products = (match.Products || []);
     const productHtmlParts = products.map((p, idx) => {
@@ -1182,10 +1197,19 @@ function executeReaction(match) {
       `;
     });
 
-    resultRow.innerHTML = `${leftHtml}<div class="result-arrow">→</div><div class="result-products">${productHtmlParts.join('<div class="product-plus">+</div>')}</div>`;
+    resultRow.innerHTML = `
+      ${titleHtml}
+      <div class="equation-row">
+        <div class="result-products">${reactantHtmlParts.join('<div class="product-plus">+</div>')}</div>
+        <div class="result-arrow">→</div>
+        <div class="result-products">${productHtmlParts.join('<div class="product-plus">+</div>')}</div>
+      </div>
+    `;
 
     setTimeout(() => resultArea.classList.add('show'), 50);
-    attach3DHover(document.getElementById('newResultLeft'));
+    
+    attach3DHover(document.getElementById('reactionTitleCard'));
+    reactants.forEach((_, idx) => attach3DHover(document.getElementById(`newReactant_${idx}`)));
     products.forEach((_, idx) => attach3DHover(document.getElementById(`newProduct_${idx}`)));
 
     [leftDropZone, rightDropZone].forEach((zone, idx) => {
