@@ -560,8 +560,8 @@ function init() {
 
 function loadDataFiles() {
   return Promise.all([
-    fetch('/elements.json').then(r => r.ok ? r.json() : Promise.reject('elements.json not found')),
-    fetch('/reactions.json').then(r => r.ok ? r.json() : Promise.reject('reactions.json not found'))
+    fetch('elements.json').then(r => r.ok ? r.json() : Promise.reject('elements.json not found')),
+    fetch('reactions.json').then(r => r.ok ? r.json() : Promise.reject('reactions.json not found'))
   ]).then(([elementsData, reactionsData]) => {
     if (elementsData && Array.isArray(elementsData.Elements)) allElements = elementsData.Elements.slice();
     else if (Array.isArray(elementsData)) allElements = elementsData.slice();
